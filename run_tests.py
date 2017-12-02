@@ -35,14 +35,12 @@ def main():
                 urllib2.urlopen('https://mlab-ns.appspot.com/ndt'))
             test(nearest_data['fqdn'])
 
-            if True:
-                continue # skip all-sites
-
-            all_sites = json.load(
-                urllib2.urlopen('https://mlab-ns.appspot.com/ndt?policy=all'))
-            us_sites = [site for site in all_sites if site['country'] == 'US']
-            us_site = random.choice(us_sites)
-            test(us_site['fqdn'])
+            if False: # skip all-sites
+                all_sites = json.load(
+                    urllib2.urlopen('https://mlab-ns.appspot.com/ndt?policy=all'))
+                us_sites = [site for site in all_sites if site['country'] == 'US']
+                us_site = random.choice(us_sites)
+                test(us_site['fqdn'])
 
         except urllib2.URLError as ue:
             logging.error('Failed to access MLabNS: %s', ue.message)
