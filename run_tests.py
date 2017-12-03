@@ -11,12 +11,14 @@ import sys
 from datetime import datetime
 
 hostname = socket.gethostname()
+host_ip = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]
+
 clt = 'web100clt'
 
 def test(site):
     global clt
-    global hostname
-    logging.info('Testing %s to %s at %s', hostname, site, str(datetime.now()))
+    global hostname, host_ip
+    logging.info('Testing %s (%s) to %s at %s', hostname, host_ip, site, str(datetime.now()))
     subprocess.check_call([clt, '--name', site, '-ll'])
 
 def main():
