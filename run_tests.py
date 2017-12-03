@@ -49,7 +49,7 @@ def main():
             logging.error('Non-zero exit status: %d "%s"', cpe.returncode,
                           cpe.message)
 
-        sleeptime = random.expovariate(1.0/3600.0)
+        sleeptime = random.expovariate(1.0/1800.0)
         logging.info('About to sleep for %g seconds', sleeptime)
         time.sleep(sleeptime)
 
